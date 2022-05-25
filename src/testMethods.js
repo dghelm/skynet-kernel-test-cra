@@ -238,37 +238,37 @@ function TestMirrorDomain() {
 }
 
 // Check that the kernel is assigning the correct domain to other modules.
-function TestTesterMirrorDomain() {
-  return new Promise((resolve, reject) => {
-    kernel
-      .callModule(kernelTestSuite, 'testerMirrorDomain', {})
-      .then((data) => {
-        if (!('domain' in data)) {
-          reject('testerMirrorDomain did not return a domain');
-          return;
-        }
-        if (typeof data.domain !== 'string') {
-          reject(
-            'testerMirrorDomain returned wrong type: ' + typeof data.domain
-          );
-          return;
-        }
-        if (data.domain !== kernelTestSuite) {
-          reject(
-            'wrong domain\nexpected: ' +
-              kernelTestSuite +
-              '\ngot: ' +
-              data.domain
-          );
-          return;
-        }
-        resolve('got expected domain: ' + data.domain);
-      })
-      .catch((err) => {
-        reject(err);
-      });
-  });
-}
+// function TestTesterMirrorDomain() {
+//   return new Promise((resolve, reject) => {
+//     kernel
+//       .callModule(kernelTestSuite, 'testerMirrorDomain', {})
+//       .then((data) => {
+//         if (!('domain' in data)) {
+//           reject('testerMirrorDomain did not return a domain');
+//           return;
+//         }
+//         if (typeof data.domain !== 'string') {
+//           reject(
+//             'testerMirrorDomain returned wrong type: ' + typeof data.domain
+//           );
+//           return;
+//         }
+//         if (data.domain !== kernelTestSuite) {
+//           reject(
+//             'wrong domain\nexpected: ' +
+//               kernelTestSuite +
+//               '\ngot: ' +
+//               data.domain
+//           );
+//           return;
+//         }
+//         resolve('got expected domain: ' + data.domain);
+//       })
+//       .catch((err) => {
+//         reject(err);
+//       });
+//   });
+// }
 
 // Check that the kernel is rejecting moduleCall messages that don't include a
 // method field.
@@ -490,21 +490,21 @@ function TestModuleSpeedSequential20k() {
 
 // TestMsgSpeedParallel5k will send ten thousand messages to the kernel in
 // parallel.
-function TestMsgSpeedParallel5k() {
-  return new Promise((resolve, reject) => {
-    let promises = [];
-    for (let i = 0; i < 5000; i++) {
-      promises.push(kernel.testMessage());
-    }
-    Promise.all(promises)
-      .then((x) => {
-        resolve('all messages reseolved');
-      })
-      .catch((x) => {
-        reject(x);
-      });
-  });
-}
+// function TestMsgSpeedParallel5k() {
+//   return new Promise((resolve, reject) => {
+//     let promises = [];
+//     for (let i = 0; i < 5000; i++) {
+//       promises.push(kernel.testMessage());
+//     }
+//     Promise.all(promises)
+//       .then((x) => {
+//         resolve('all messages reseolved');
+//       })
+//       .catch((x) => {
+//         reject(x);
+//       });
+//   });
+// }
 
 // TestModuleSpeedParallel5k will have the tester module perform five
 // thousand sequential messages on the helper module.
